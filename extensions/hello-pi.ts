@@ -1,18 +1,43 @@
-import type { ExtensionAPI } from '@earendil-works/pi-coding-agent'
+import type {
+  ExtensionAPI,
+  ExtensionContext,
+} from '@earendil-works/pi-coding-agent'
 
-import { heroMessage } from '../core/hero'
+import { heroMessage, installDepPackages, removeDepPackages } from '../core'
 
 export default function (pi: ExtensionAPI) {
-  function showHello(ctx: any) {
-    ctx.ui.setWidget('hello-pi', [heroMessage], {
-      placement: 'aboveEditor',
-    })
-  }
-
-  pi.registerCommand('hello-pi-test', {
-    description: 'Verify hello-pi extension is loaded',
-    handler: async (_args, ctx) => {
+  pi.on('session_start', (_event, ctx) => {
+    setTimeout(() => {
       showHello(ctx)
+    }, 50)
+  })
+
+  pi.registerCommand('hero:install-dep-pkg', {
+    description: 'Install Pi Hero dependency packages',
+    handler: async (_args, ctx) => {
+      await installDepPackages(ctx)
     },
   })
+
+  pi.registerCommand('hero:remove-dep-pkg', {
+    description: 'Remove Pi Hero dependency packages',
+    handler: async (_args, ctx) => {
+      await removeDepPackages(ctx)
+    },
+  })
+}
+
+function showHello(ctx: ExtensionContext) {
+  // ctx.ui.setWidget('hello-pi', [heroMessage], {
+  //   placement: 'aboveEditor',
+  // })
+  //   ctx.ui.setHeader((tui, theme) => {
+  //   return {
+  //     render() {
+  //       return [heroMessage]
+  //     },
+  //     invalidate() {},
+  //   }
+  // })
+  ctx.ui.notify(heroMessage, 'info')
 }
