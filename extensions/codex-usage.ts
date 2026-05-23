@@ -144,6 +144,8 @@ export function codexUsage(pi: ExtensionAPI) {
   let statuslineClearTimer: ReturnType<typeof setTimeout> | undefined
   let statuslineRefreshTimer: ReturnType<typeof setTimeout> | undefined
   let statuslineRequestId = 0
+  let hasAttemptedInitialStatuslineLoad = false
+  let hasValidUsageStatusline = false
 
   const clearStatuslineTimers = () => {
     if (statuslineClearTimer) clearTimeout(statuslineClearTimer)
@@ -155,12 +157,15 @@ export function codexUsage(pi: ExtensionAPI) {
   const clearUsageStatusline = (ctx: ExtensionContext) => {
     statuslineRequestId += 1
     clearStatuslineTimers()
+    hasAttemptedInitialStatuslineLoad = false
+    hasValidUsageStatusline = false
     ctx.ui.setStatus(STATUS_KEY, undefined)
   }
 
   const scheduleTemporaryStatuslineClear = (ctx: ExtensionContext) => {
     if (statuslineClearTimer) clearTimeout(statuslineClearTimer)
     statuslineClearTimer = setTimeout(() => {
+      hasValidUsageStatusline = false
       ctx.ui.setStatus(STATUS_KEY, undefined)
       statuslineClearTimer = undefined
     }, CACHE_TTL_MS)
@@ -186,6 +191,7 @@ export function codexUsage(pi: ExtensionAPI) {
       STATUS_KEY,
       formatCodexUsageStatusline(report, options.model)
     )
+    hasValidUsageStatusline = true
     if (options.autoRefresh) scheduleStatuslineRefresh(ctx)
     else scheduleTemporaryStatuslineClear(ctx)
   }
@@ -209,7 +215,11 @@ export function codexUsage(pi: ExtensionAPI) {
       return
     }
 
-    ctx.ui.setStatus(STATUS_KEY, renderStatusLine('checking...'))
+    const shouldShowChecking =
+      !hasAttemptedInitialStatuslineLoad && !hasValidUsageStatusline
+    hasAttemptedInitialStatuslineLoad = true
+    if (shouldShowChecking)
+      ctx.ui.setStatus(STATUS_KEY, renderStatusLine('checking...'))
     const result = await queryUsage(ctx, { timeoutMs: DEFAULT_TIMEOUT_MS })
     if (requestId !== statuslineRequestId) return
     if (!isOpenAICodexModel(ctx.model)) {
@@ -218,7 +228,8 @@ export function codexUsage(pi: ExtensionAPI) {
     }
 
     if (!result.ok) {
-      ctx.ui.setStatus(STATUS_KEY, renderStatusLine('usage error'))
+      if (!hasValidUsageStatusline)
+        ctx.ui.setStatus(STATUS_KEY, renderStatusLine('usage error'))
       scheduleStatuslineRefresh(ctx)
       return
     }
@@ -275,8 +286,10 @@ export function codexUsage(pi: ExtensionAPI) {
         }
         showReport(ctx, result.report, false)
       } finally {
-        if (options.value.statusline && !keepStatusline)
+        if (options.value.statusline && !keepStatusline) {
+          hasValidUsageStatusline = false
           ctx.ui.setStatus(STATUS_KEY, undefined)
+        }
       }
     },
   })
@@ -1049,7 +1062,7 @@ function brightenInfoNotification(text: string): string {
 }
 
 function renderStatusLine(msg: string): string {
-  return `${GRAY_COLOR}${msg}`
+  return `${msg}`
 }
 
 function isPrimaryCodexSnapshot(

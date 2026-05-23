@@ -85,9 +85,14 @@ export function installFooter(
 					config.colors.runtimePrefix,
 					colorSource,
 				);
+				const extensionStatuses = Array.from(footerData.getExtensionStatuses().entries())
+					.sort(([a], [b]) => a.localeCompare(b))
+					.map(([, text]) => renderStyleForSource(theme, colorSource, config.colors.contextNormal, text))
+					.filter(Boolean);
 
 				const left = [cwdLabel, branchLabel, runtimeLabel].filter(Boolean).join(" ");
 				const right = [
+					...extensionStatuses,
 					renderStyleForSource(theme, colorSource, contextColor, state.contextLabel),
 					renderStyleForSource(theme, colorSource, config.colors.tokens, state.tokenLabel),
 					renderStyleForSource(theme, colorSource, config.colors.cost, state.costLabel),
