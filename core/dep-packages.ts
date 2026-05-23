@@ -22,38 +22,40 @@ export async function removeDepPackages(ctx: ExtensionCommandContext) {
 
 async function operateDepPackages(
   ctx: ExtensionCommandContext,
-  action: 'install' | 'remove',
+  action: 'install' | 'remove'
 ) {
   if (operating) {
-    setStatus(ctx, '依赖包操作正在执行中，请稍候...')
+    setStatus(ctx, 'Please waiting...')
     return
   }
 
   operating = true
   const failedPackages: string[] = []
-  const actionText = action === 'install' ? '安装' : '移除'
 
   try {
     for (const packageName of DEP_PACKAGES) {
-      setStatus(ctx, `正在${actionText} Pi 依赖包：${packageName}`)
+      setStatus(ctx, `${action} pi-package: ${packageName}`)
 
       const result = await runPiPackageCommand(action, packageName)
       if (!result.ok) {
         failedPackages.push(packageName)
         setStatus(
           ctx,
-          `${actionText}失败：${packageName}\n\n${result.output || '未获取到错误输出'}`,
+          `${action} failed: ${packageName}\n\n${result.output || 'No output'}`
         )
         continue
       }
     }
 
     if (failedPackages.length > 0) {
-      setStatus(ctx, `部分依赖包${actionText}失败：${failedPackages.join(', ')}`)
+      setStatus(
+        ctx,
+        `Some dependency packages failed to ${action}: ${failedPackages.join(', ')}`
+      )
       return
     }
 
-    setStatus(ctx, `Pi 依赖包${actionText}完成，正在重新加载资源...`)
+    setStatus(ctx, `Pi dependency packages ${action} completed. Reloading resources...`)
     await ctx.reload()
   } finally {
     operating = false
@@ -62,7 +64,7 @@ async function operateDepPackages(
 
 function runPiPackageCommand(
   action: 'install' | 'remove',
-  packageName: string,
+  packageName: string
 ): Promise<{ ok: boolean; output: string }> {
   return new Promise((resolve) => {
     const command = process.platform === 'win32' ? 'pi.cmd' : 'pi'
