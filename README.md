@@ -27,4 +27,4 @@ pi install npm:@lanten233/pi-hero
 - [pi-web-access](https://pi.dev/packages/pi-web-access) - 提供网页访问能力
 - [pi-zentui](https://pi.dev/packages/pi-zentui) - zentui 界面库
 - [@juicesharp/rpiv-ask-user-question](https://pi.dev/packages/@juicesharp/rpiv-ask-user-question) - 询问用户问题
-- `@juicesharp/rpiv-todo`
+- [@juicesharp/rpiv-todo](https://pi.dev/packages/@juicesharp/rpiv-todo) - Agent 以待办事项列表的方式组织和输出行动计划
