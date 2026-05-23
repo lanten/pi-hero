@@ -1,6 +1,6 @@
 # Pi Hero
 
-Pi Hero 是一个 Pi 扩展包，整合并管理常用扩展包。
+Pi Agent 套件，提供一系列功能模块，开箱即用。
 
 <img width="907" height="339" alt="image" src="https://github.com/user-attachments/assets/a7fa2dcb-84c1-46b0-aa91-59657cc29ec1" />
 
@@ -12,7 +12,13 @@ Pi Hero 是一个 Pi 扩展包，整合并管理常用扩展包。
 pi install npm:@lanten233/pi-hero
 ```
 
-### 可用命令
+### 初始化
+
+```
+/hero:install-dep-pkg
+```
+
+### 命令
 
 在 Pi 中可直接执行以下命令：
 
@@ -28,3 +34,4 @@ pi install npm:@lanten233/pi-hero
 - [pi-zentui](https://pi.dev/packages/pi-zentui) - zentui 界面库
 - [@juicesharp/rpiv-ask-user-question](https://pi.dev/packages/@juicesharp/rpiv-ask-user-question) - 询问用户问题
 - [@juicesharp/rpiv-todo](https://pi.dev/packages/@juicesharp/rpiv-todo) - Agent 以待办事项列表的方式组织和输出行动计划
+- [@gotgenes/pi-permission-system](https://pi.dev/packages/@gotgenes/pi-permission-system) - 权限门禁系统
