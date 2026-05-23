@@ -8,6 +8,7 @@ const DEP_PACKAGES = [
   'pi-mcp-adapter',
   'pi-subagents',
   'pi-web-access',
+  'pi-zentui',
 ]
 
 let operating = false
@@ -55,7 +56,10 @@ async function operateDepPackages(
       return
     }
 
-    setStatus(ctx, `Pi dependency packages ${action} completed. Reloading resources...`)
+    setStatus(
+      ctx,
+      `Pi dependency packages ${action} completed. Reloading resources...`
+    )
     await ctx.reload()
   } finally {
     operating = false

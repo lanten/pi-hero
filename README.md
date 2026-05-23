@@ -19,13 +19,12 @@ pi install npm:@lanten233/pi-hero
 - `/hero:install-dep-pkg`：安装依赖的 Pi package
 - `/hero:remove-dep-pkg`：移除依赖的 Pi package
 
-### 依赖包
+### 依赖包列表
 
-当前会自动管理以下依赖：
-
-- `context-mode`
-- `pi-subagents`
-- `pi-mcp-adapter`
-- `pi-web-access`
-- `@juicesharp/rpiv-ask-user-question`
+- [context-mode](https://pi.dev/packages/context-mode) - 上下文管理/优化
+- [pi-subagents](https://pi.dev/packages/pi-subagents) - 子代理管理
+- [pi-mcp-adapter](https://pi.dev/packages/pi-mcp-adapter) - MCP 适配器
+- [pi-web-access](https://pi.dev/packages/pi-web-access) - 提供网页访问能力
+- [pi-zentui](https://pi.dev/packages/pi-zentui) - zentui 界面库
+- [@juicesharp/rpiv-ask-user-question](https://pi.dev/packages/@juicesharp/rpiv-ask-user-question) - 询问用户问题
 - `@juicesharp/rpiv-todo`
