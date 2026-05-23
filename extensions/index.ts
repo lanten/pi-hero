@@ -5,11 +5,9 @@ import type {
 
 import { heroMessage, installDepPackages, removeDepPackages } from '../core'
 import { codexUsage } from './codex-usage'
-import zentui from './zentui'
 
 export default function (pi: ExtensionAPI) {
   codexUsage(pi)
-  zentui(pi)
 
   pi.on('session_start', (_event, ctx) => {
     setTimeout(() => {
