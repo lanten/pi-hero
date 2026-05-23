@@ -1,0 +1,19 @@
+schema: spec-driven
+
+# 项目上下文（可选）
+# 在创建工件时会展示给 AI。
+# 添加你的技术栈、约定、风格指南、领域知识等。
+# Example:
+context: |
+  这是一个 Pi Agent 的 package 项目.
+  使用 Typescript, 无需编译.
+
+# 按工件规则（可选）
+# 为特定工件添加自定义规则。
+# Example:
+# rules:
+#   proposal:
+#     - Keep proposals under 500 words
+#     - Always include a "Non-goals" section
+#   tasks:
+#     - Break tasks into chunks of max 2 hours
