@@ -4,8 +4,11 @@ import type {
 } from '@earendil-works/pi-coding-agent'
 
 import { heroMessage, installDepPackages, removeDepPackages } from '../core'
+import { codexUsage } from './codex-usage'
 
 export default function (pi: ExtensionAPI) {
+  codexUsage(pi)
+
   pi.on('session_start', (_event, ctx) => {
     setTimeout(() => {
       showHello(ctx)
@@ -28,16 +31,5 @@ export default function (pi: ExtensionAPI) {
 }
 
 function showHello(ctx: ExtensionContext) {
-  // ctx.ui.setWidget('hello-pi', [heroMessage], {
-  //   placement: 'aboveEditor',
-  // })
-  //   ctx.ui.setHeader((tui, theme) => {
-  //   return {
-  //     render() {
-  //       return [heroMessage]
-  //     },
-  //     invalidate() {},
-  //   }
-  // })
   ctx.ui.notify(heroMessage, 'info')
 }

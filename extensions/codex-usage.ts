@@ -139,7 +139,7 @@ type PendingRpc = {
   reject: (error: Error) => void
 }
 
-export default function codexUsage(pi: ExtensionAPI) {
+export function codexUsage(pi: ExtensionAPI) {
   let cache: CachedReport | undefined
   let statuslineClearTimer: ReturnType<typeof setTimeout> | undefined
   let statuslineRefreshTimer: ReturnType<typeof setTimeout> | undefined
@@ -256,7 +256,8 @@ export default function codexUsage(pi: ExtensionAPI) {
       }
 
       let keepStatusline = false
-      if (options.value.statusline) ctx.ui.setStatus(STATUS_KEY, renderStatusLine('checking...'))
+      if (options.value.statusline)
+        ctx.ui.setStatus(STATUS_KEY, renderStatusLine('checking...'))
       try {
         const result = await queryUsage(ctx, options.value)
         if (!result.ok) {
