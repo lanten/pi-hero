@@ -2,7 +2,7 @@
 
 Pi Hero 是一个 Pi 扩展包，整合并管理常用扩展包。
 
-<img width="1536" height="932" alt="image" src="https://github.com/user-attachments/assets/358f6502-21c8-4386-8ed8-61da09912704" />
+<img width="907" height="339" alt="image" src="https://github.com/user-attachments/assets/a7fa2dcb-84c1-46b0-aa91-59657cc29ec1" />
 
 ## 使用方式
 
