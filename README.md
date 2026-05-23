@@ -12,13 +12,6 @@ Pi Hero 是一个 Pi 扩展包，整合并管理常用扩展包。
 pi install npm:@lanten233/pi-hero
 ```
 
-将本仓库作为 Pi package 安装后，Pi 会根据 `package.json` 中的 `pi` 配置自动加载：
-
-- `extensions/`
-- `skills/`
-- `prompts/`
-- `themes/`
-
 ### 可用命令
 
 在 Pi 中可直接执行以下命令：
