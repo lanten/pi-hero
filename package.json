@@ -1,5 +1,5 @@
 {
-  "name": "@lanten/pi-hero",
+  "name": "@lanten233/pi-hero",
   "version": "0.0.1",
   "description": "自用 Pi Agent 扩展包",
   "author": "lanten",
@@ -32,6 +32,9 @@
   "keywords": [
     "pi-package"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "homepage": "https://github.com/lanten/pi-hero#readme",
   "bugs": {
     "url": "https://github.com/lanten/pi-hero/issues"
