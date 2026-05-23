@@ -1,0 +1,54 @@
+{
+  "name": "@lanten/pi-hero",
+  "version": "0.0.1",
+  "description": "自用 Pi Agent 扩展包",
+  "author": "lanten",
+  "license": "MIT",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {},
+  "files": [
+    "core/",
+    "extensions/",
+    "prompts/",
+    "skills/",
+    "themes/",
+    "README.md"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions"
+    ],
+    "skills": [
+      "./skills"
+    ],
+    "prompts": [
+      "./prompts"
+    ],
+    "themes": [
+      "./themes"
+    ]
+  },
+  "keywords": [
+    "pi-package"
+  ],
+  "homepage": "https://github.com/lanten/pi-hero#readme",
+  "bugs": {
+    "url": "https://github.com/lanten/pi-hero/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lanten/pi-hero.git"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "^0.75.4"
+  },
+  "dependencies": {
+    "@juicesharp/rpiv-ask-user-question": "^1.12.0",
+    "@juicesharp/rpiv-todo": "^1.12.0",
+    "context-mode": "^1.0.146",
+    "pi-mcp-adapter": "^2.7.0",
+    "pi-subagents": "^0.25.0",
+    "pi-web-access": "^0.10.7"
+  }
+}
