@@ -16,8 +16,8 @@ pi install npm:@lanten233/pi-hero
 
 在 Pi 中可直接执行以下命令：
 
-- `hero:install-dep-pkg`：安装依赖的 Pi package
-- `hero:remove-dep-pkg`：移除依赖的 Pi package
+- `/hero:install-dep-pkg`：安装依赖的 Pi package
+- `/hero:remove-dep-pkg`：移除依赖的 Pi package
 
 ### 依赖包
 
