@@ -8,7 +8,7 @@ const DEP_PACKAGES = [
   'context-mode',
   'pi-mcp-adapter',
   'pi-subagents',
-  'pi-web-access',
+  'pi-smart-fetch',
   'pi-zentui',
 ]
 
@@ -22,10 +22,7 @@ export async function removeDepPackages(ctx: ExtensionCommandContext) {
   await operateDepPackages(ctx, 'remove')
 }
 
-async function operateDepPackages(
-  ctx: ExtensionCommandContext,
-  action: 'install' | 'remove'
-) {
+async function operateDepPackages(ctx: ExtensionCommandContext, action: 'install' | 'remove') {
   if (operating) {
     setStatus(ctx, 'Please waiting...')
     return
@@ -41,36 +38,24 @@ async function operateDepPackages(
       const result = await runPiPackageCommand(action, packageName)
       if (!result.ok) {
         failedPackages.push(packageName)
-        setStatus(
-          ctx,
-          `${action} failed: ${packageName}\n\n${result.output || 'No output'}`
-        )
+        setStatus(ctx, `${action} failed: ${packageName}\n\n${result.output || 'No output'}`)
         continue
       }
     }
 
     if (failedPackages.length > 0) {
-      setStatus(
-        ctx,
-        `Some dependency packages failed to ${action}: ${failedPackages.join(', ')}`
-      )
+      setStatus(ctx, `Some dependency packages failed to ${action}: ${failedPackages.join(', ')}`)
       return
     }
 
-    setStatus(
-      ctx,
-      `Pi dependency packages ${action} completed. Reloading resources...`
-    )
+    setStatus(ctx, `Pi dependency packages ${action} completed. Reloading resources...`)
     await ctx.reload()
   } finally {
     operating = false
   }
 }
 
-function runPiPackageCommand(
-  action: 'install' | 'remove',
-  packageName: string
-): Promise<{ ok: boolean; output: string }> {
+function runPiPackageCommand(action: 'install' | 'remove', packageName: string): Promise<{ ok: boolean; output: string }> {
   return new Promise((resolve) => {
     const command = process.platform === 'win32' ? 'pi.cmd' : 'pi'
     let child: ReturnType<typeof spawn>

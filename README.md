@@ -30,7 +30,7 @@ pi install npm:@lanten233/pi-hero
 - [context-mode](https://pi.dev/packages/context-mode) - 上下文管理/优化
 - [pi-subagents](https://pi.dev/packages/pi-subagents) - 子代理管理
 - [pi-mcp-adapter](https://pi.dev/packages/pi-mcp-adapter) - MCP 适配器
-- [pi-web-access](https://pi.dev/packages/pi-web-access) - 提供网页访问能力
+- [pi-smart-fetch](https://pi.dev/packages/pi-smart-fetch) - 网页访问能力
 - [pi-zentui](https://pi.dev/packages/pi-zentui) - zentui 界面库
 - [@juicesharp/rpiv-ask-user-question](https://pi.dev/packages/@juicesharp/rpiv-ask-user-question) - 询问用户问题
 - [@juicesharp/rpiv-todo](https://pi.dev/packages/@juicesharp/rpiv-todo) - Agent 以待办事项列表的方式组织和输出行动计划
