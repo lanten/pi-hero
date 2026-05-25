@@ -5,7 +5,7 @@ import type { ExtensionCommandContext } from '@earendil-works/pi-coding-agent'
 const DEP_PACKAGES = [
   '@juicesharp/rpiv-ask-user-question',
   '@juicesharp/rpiv-todo',
-  '@gotgenes/pi-permission-system',
+  // '@gotgenes/pi-permission-system',
   'context-mode', // MCP 上下文优化
   'pi-mcp-adapter', // MCP 适配器
   '@marckrenn/pi-sub-bar',
