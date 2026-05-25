@@ -1,3 +1,4 @@
+import { gray } from 'picocolors'
 import { spawn } from 'node:child_process'
 import type { ExtensionCommandContext } from '@earendil-works/pi-coding-agent'
 
@@ -5,8 +6,10 @@ const DEP_PACKAGES = [
   '@juicesharp/rpiv-ask-user-question',
   '@juicesharp/rpiv-todo',
   '@gotgenes/pi-permission-system',
-  'context-mode',
-  'pi-mcp-adapter',
+  'context-mode', // MCP 上下文优化
+  'pi-mcp-adapter', // MCP 适配器
+  '@marckrenn/pi-sub-bar',
+  'pi-markdown-preview',
   'pi-subagents',
   'pi-smart-fetch',
   'pi-zentui',
@@ -63,7 +66,7 @@ function runPiPackageCommand(action: 'install' | 'remove', packageName: string):
     try {
       child = spawn(command, [action, `npm:${packageName}`], {
         shell: process.platform === 'win32',
-        // stdio: ['ignore', 'pipe', 'pipe'],
+        stdio: ['ignore', 'pipe', 'pipe'],
       })
     } catch (error) {
       resolve({
@@ -94,7 +97,7 @@ function runPiPackageCommand(action: 'install' | 'remove', packageName: string):
 }
 
 function setStatus(ctx: ExtensionCommandContext, message: string) {
-  ctx.ui.setWidget('pi-hero-dep-packages', [message], {
+  ctx.ui.setWidget('pi-hero-dep-packages', [gray(message)], {
     placement: 'aboveEditor',
   })
 }

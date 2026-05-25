@@ -1,11 +1,8 @@
 import type { ExtensionAPI, ExtensionContext } from '@earendil-works/pi-coding-agent'
 
-import { heroMessage, installDepPackages, removeDepPackages } from '../core'
-import { codexUsage } from './codex-usage'
+import { helloMessage, installDepPackages, removeDepPackages } from '../core'
 
 export default function (pi: ExtensionAPI) {
-  codexUsage(pi)
-
   pi.on('session_start', (_event, ctx) => {
     setTimeout(() => {
       showHello(ctx)
@@ -28,5 +25,5 @@ export default function (pi: ExtensionAPI) {
 }
 
 function showHello(ctx: ExtensionContext) {
-  ctx.ui.notify(heroMessage, 'info')
+  ctx.ui.notify(helloMessage, 'info')
 }

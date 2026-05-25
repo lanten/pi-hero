@@ -1,2 +1,2 @@
-export * from './hero'
+export * from './hello'
 export * from './dep-packages'
