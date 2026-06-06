@@ -9,7 +9,6 @@ const DEP_PACKAGES = [
   'context-mode', // MCP 上下文优化
   'pi-mcp-adapter', // MCP 适配器
   '@marckrenn/pi-sub-bar',
-  'pi-markdown-preview',
   'pi-subagents',
   'pi-smart-fetch',
   'pi-zentui',
